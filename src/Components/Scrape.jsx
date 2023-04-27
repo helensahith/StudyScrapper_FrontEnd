@@ -20,7 +20,11 @@ const Scrape = ({ setResdata, resdata }) => {
   const handleUpload = async (event) => {
     const extname = event.target.files[0].name;
 
-    if (extname.endsWith(".jpg") || extname.endsWith(".jpeg") || extname.endsWith(".png")) {
+    if (
+      extname.endsWith(".jpg") ||
+      extname.endsWith(".jpeg") ||
+      extname.endsWith(".png")
+    ) {
       setError(null);
       const fname = event.target.files[0].name;
       console.log(fname);
@@ -47,6 +51,14 @@ const Scrape = ({ setResdata, resdata }) => {
 
   return !isloading && resdata === null ? (
     <main className=" flex flex-col min-h-screen bg-slate-800 gap-4  pt-3 items-center">
+      <section className="font-mono font-extrabold flex flex-row items-center justify-center p-1 bg-slate-900 rounded-xl">
+        <label className="m-5">Subject Name: </label>
+        <input
+          required
+          className="bg-teal-400 text-cyan-500 rounded-xl w-45 h-auto m-4 p-1"
+          // placeholder="Subject name"
+        />
+      </section>
       <section className="flex flex-col items-center text-sky-700 text-3xl bg-slate-900  w-80 h-auto py-8 px-2 text-center rounded-2xl border-dashed border-4 border-sky-700 my-7">
         <button className="flex flex-row justify-center items-center flex-nowrap  mx-2 my-12 p-2 text-xl  w-24  max-h-9 bg-sky-300  rounded-sm text-slate-900 hover:scale-150 hover:-translate-y-4 transition-all hover:shadow-2xl hover:shadow-sky-500">
           <input
@@ -88,7 +100,6 @@ const Scrape = ({ setResdata, resdata }) => {
         <h1>GO</h1>
         <FaRegPaperPlane className=" ml-4" />
       </button>
-
       <ul className=" w-80 morp rounded-xl text-lg text-indigo-300 p-2 text-center">
         <h1 className="flex flex-row flex-nowrap text-2xl gap-2 items-center justify-center p-2 text-indigo-300 w-full border-b-2 border-indigo-300">
           <FaExclamationTriangle />
