@@ -6,7 +6,7 @@ import {
   FaRegPaperPlane,
   FaExclamationTriangle,
 } from "react-icons/fa";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useRef } from "react";
 import { Navigate } from "react-router-dom";
 import Loading from "./Loading";
 import getContent from "../controllers/getContent";
@@ -16,6 +16,7 @@ const Scrape = ({ setResdata, resdata }) => {
   const [error, setError] = useState(null);
   const [image, setImage] = useState(null);
   const [isloading, setIsloading] = useState(false);
+  const [subject,setSubject]=useState('');
 
   const handleUpload = async (event) => {
     const extname = event.target.files[0].name;
@@ -49,7 +50,9 @@ const Scrape = ({ setResdata, resdata }) => {
     <main className=" flex flex-col min-h-screen bg-slate-800 gap-4  pt-3 items-center">
        <section className="font-mono font-extrabold flex flex-row items-center justify-center p-1 bg-slate-900 text-[#E1E4E7] rounded-xl">
       <label className='relative cursor-pointer'>
-        <input type="text" placeholder="Subject" className='h-10 w-30 px-4 py-3 text-2xl text-white bg-black border-white border-2 rounded-lg border-opacity-50 outline-none focus:border-blue-500 placeholder-gray-300 placeholder-opacity-0 transition duration-200' />
+        <input type="text" placeholder="Subject" className='h-10 w-30 px-4 py-3 text-2xl text-white bg-black border-white border-2 rounded-lg border-opacity-50 outline-none focus:border-blue-500 placeholder-gray-300 placeholder-opacity-0 transition duration-200'
+        onChange={(e)=>setSubject(e.target.value)}
+        />
         <span className='text-xl text-white text-opacity-80 bg-black absolute left-4 top-1 px-1 transition duration-200 input-text'>Subject</span>
       </label>
     </section>
@@ -115,7 +118,7 @@ const Scrape = ({ setResdata, resdata }) => {
   ) : isloading ? (
     <Loading />
   ) : (
-    <Navigate to="/results" />
+    <Navigate to={`/results/${subject}`} />
   );
 };
 

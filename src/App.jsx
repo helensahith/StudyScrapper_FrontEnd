@@ -27,7 +27,7 @@ function App() {
               path="scrape"
               element={<Scrape setResdata={setResdata} resdata={resdata} />}
             />
-            <Route path="results" element={<ResultsX list={resdata} />} />
+            <Route path="results/:subject" element={<ResultsX list={resdata} />} />
             <Route path="*" element={<Invalid />} />
           </Route>
         </Routes>
